@@ -1,0 +1,31 @@
+.has_error {
+    background: #F00;
+    border: 2px solid #F00;
+}
+
+.field_list > * {
+
+}
+
+.field_list .field_row {
+
+}
+
+.field_list .field_row > ul {
+    margin: 0;
+    list-style: none;
+}
+
+.field_list .field_row > ul > li {
+    margin-left: 0px;
+}
+
+.field_list .field_row > * {
+    display: inline-block;
+}
+
+.label {
+    color : #000;
+}
+
+

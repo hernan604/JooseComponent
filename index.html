@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title of the document</title>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=1210, user-scalable=yes"> 
+    <meta name="description" content="Site builder by perldelux"> 
+    <meta name="keywords" content=""> 
+    <meta property="og:title" content="Perldelux - top sites"/> 
+    <meta property="og:description" content="perldelux top site builder"/> 
+    <meta property="og:image" content="http://teste.com.br/profile_img.png"/> 
+    <link  rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAA" />
+    <meta name="verify-v1" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"> 
+    <meta name="google-site-verification" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/> 
+    <meta name="googlebot" content="noodp"> 
+    <meta name="robots" content="index, follow"> 
+    <meta name="referrer" content="always"> 
+    <meta name="application-name" content="perldelux"> 
+    <meta name="google-site-verification" content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/> 
+    <script type='text/javascript' src='http://.com.br:8081/js/jquery-3.1.1.min.js'></script>
+    <!--<script type='text/javascript' src='http://.com.br:8081/js/o-0.2.0.min.js'></script>-->
+    <script type='text/javascript' src='http://.com.br:8081/js/joose.js'></script>
+    <script type='text/javascript' src='http://.com.br:8081/js/forms_joose.js'></script>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">.com.br</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="http://.com.br:8081/bla-bla?foo=bar">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class='container'>
+
+    <div class="jumbotron">
+        <h1>Welcome!</h1>
+        <p>
+            Welcome to  site builder. This is a fresh site install. Please register this domain on the application to proceed.
+        </p>
+    </div>
+    <div class='myform form-inline'></div>
+</div>
+
+<script>
+(function () {
+"use strict";
+
+var section_company = new SectionHeader({
+	id : 'section_company',
+	content : "Company details",
+});
+
+var firstname = new FormField({
+    id : 'firstname',
+    field_label : new FormFieldLabel({
+        content : 'First name'
+    }),
+    field_data : new FormFieldInput({
+        placeholder : "Enter your first name",
+        validate : function () {
+        }
+    }),
+});
+
+var lastname = new FormField({
+    id : 'lastname',
+    field_label : new FormFieldLabel({
+        content : 'Last name'
+    }),
+    field_data : new FormFieldInput({
+        placeholder : "Enter your last name",
+        validate : function () {
+        }
+    }),
+});
+
+var address = new FormField({
+    id : 'address',
+    field_label : new FormFieldLabel({
+        content : 'Address'
+    }),
+    field_data : new FormFieldInput({
+        placeholder : "Enter your address",
+        validate : function () {
+        }
+    }),
+});
+
+var number = new FormField({
+    id : 'number',
+    field_label : new FormFieldLabel({
+        content : 'Number'
+    }),
+    field_data : new FormFieldInput({
+        placeholder : "Number",
+        validate : function () {
+        }
+    }),
+});
+
+var address_additional = new FormField({
+    id : 'address_additional',
+    field_label : new FormFieldLabel({
+        content : 'Address Aditional'
+    }),
+    field_data : new FormFieldInput({
+        placeholder : "",
+        validate : function () {
+        }
+    }),
+});
+
+var city = new FormField({
+    id : 'city',
+    field_label : new FormFieldLabel({
+        content : 'City'
+    }),
+    field_data : new FormFieldInput({
+        placeholder : "city",
+        validate : function () {
+        }
+    }),
+});
+
+var state = new FormField({
+    id : 'state',
+    is_required : true,
+    field_label : new FormFieldLabel({
+        content : 'State'
+    }),
+    field_data : new FormFieldInput({
+        placeholder : "",
+        validate : function ( value ) {
+            if ( value.match( /SP|RJ/ ) ) {
+                this.add_error('Nao pode ser ' + value);
+            }
+        }
+    }),
+});
+
+var zipcode = new FormField({
+    id : 'zipcode',
+    field_label : new FormFieldLabel({
+        content : 'Zipcode'
+    }),
+    field_data : new FormFieldInput({
+        placeholder : "",
+        validate : function () {
+        }
+    }),
+});
+
+var agreement = new FormField({
+    id : 'agreement',
+    is_required : true,
+    css_class : '',
+})
+.set_data_field(
+    new FormFieldCheckbox({
+        validate : function ( is_checked ) {
+            if ( ! is_checked ) {
+                this.add_error('You must accept the agreement to proceed');
+            }
+        }
+    })
+)
+.set_label(
+    new FormFieldLabel({
+        content : 'User Agreement -- check to proceed'
+    })
+)
+
+var select_multi = new FormField({
+    id : 'select_multi',
+    field_label : new FormFieldLabel({
+        content : 'Select some options'
+    }),
+    field_data : new FormFieldSelect({
+        is_multiple : true,
+        options : [
+            { value : '', text : 'select an option' },
+            { value : 'one', text : 'Value one' },
+            { value : 'two', text : 'Value two' },
+            { value : 'three', text : 'Value three' },
+        ],
+        validate : function ( value ) {
+            console.log( 'VALUES SELECT MULTI: ', value )
+            if ( value.length != 3 ) {
+                this.add_error('You must select at least 3 values');
+            }
+        }
+    }),
+});
+
+var select_single = new FormField({
+    id : 'select_single',
+    field_label : new FormFieldLabel({
+        content : 'Select some options'
+    }),
+    field_data : new FormFieldSelect({
+        options : [
+            { value : '', text : 'select an option' },
+            { value : 'one', text : 'Value one' },
+            { value : 'two', text : 'Value two' },
+            { value : 'three', text : 'Value three' },
+        ],
+        validate : function ( value ) {
+            if ( ! value || value != 'one' ) {
+                this.add_error('select value "one" to proceed ')
+            }
+        }
+    }),
+});
+
+var submit = new FormField({
+    id: 'btn_submit',
+    field_data : new FormButton({
+        content : "submit",
+        events : {
+            click : function ( ev ) {
+                var target = $( ev.currentTarget );
+                this.form.validate();
+                if ( this.form.is_valid ) {
+                    console.log('congrats! form is valid.. proceeding')
+                } else {
+                    console.log('Form is not valid, check the errors')
+                }
+            }
+        }
+    })
+})
+
+var clear = new FormField({
+    id: 'btn_clear',
+    field_data : new FormButton({
+        content : "clear",
+        events : {
+            click : function ( ev ) {
+                var target = $( ev.currentTarget );
+                this.form.clear();
+            }
+        }
+    })
+});
+
+
+var tabela = new FormField({
+    id : 'tabela',
+    field_label : new FormFieldLabel({
+        content : 'Tabela'
+    }),
+    field_data : new FormFieldTable({
+        columns : [
+            {
+                id : 'nome',
+                label : 'Nome',
+                build: function ( item ) {
+                    return item.nome
+                }
+            },
+            {
+                id : 'sobrenome',
+                label : 'Sobrenome',
+                build: function ( item ) {
+                    return item.sobrenome
+                }
+            },
+            {
+                id : 'pro',
+                label : 'Profissional',
+                build: function ( item ) {
+                    var cb = new FormFieldCheckbox({
+                        events : {
+                            click : function ( self, ev ) {
+                                var target = $( ev.currentTarget );
+                              //self.form.validate();
+                              //if ( self.form.is_valid ) {
+                              //    console.log('congrats! form is valid.. proceeding')
+                              //} else {
+                              //    console.log('Form is not valid, check the errors')
+                              //}
+                                if ( target.prop('checked') ) {
+                                    console.log( 'its checked ! do something', item );
+                                } else {
+                                    console.log( 'NOT checked', item );
+                                }
+                                
+                            }
+                        }
+                    });
+                    cb.set_value( item.pro );
+                    return cb.elem
+                }
+            }
+        ],
+    }),
+});
+
+
+var form = new Form({
+    events : {
+        keyup : function ( ev ) {
+            if ( ev.keyCode == 13 ) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                this.field.btn_submit.trigger('click');
+            }
+        }
+    },
+    fields : [
+		[ section_company ],
+        [ 
+            firstname, 
+            lastname ,
+        ],
+        [ address, number, address_additional, ],
+        [ city, state, zipcode, ],
+        [ agreement ],
+        [ select_single, select_multi ],
+        [ tabela ],
+        [ 
+            submit, 
+            clear 
+        ]
+    ],
+});
+
+form.fill({
+    firstname : "João",
+    lastname : "Silva",
+    address : "Rua das bruxas",
+    number : 33,
+    address_additional : "apto 123",
+    city : "São Paulo",
+    state : "SP",
+    zipcode : "00100-222",
+//  agreement : false,
+    select_multi : ['three', 'two'],
+    select_single : 'three',
+    tabela : [
+        {
+            nome : "João",
+            sobrenome : "Silva",
+            pro : true,
+        },
+        {
+            nome : "Maria",
+            sobrenome : "Luiza",
+            pro : false,
+        },
+        {
+            nome : "Miguel",
+            sobrenome : "Santana",
+            pro : true,
+        },
+    ],
+});
+
+form.elem.appendTo('.myform');
+
+})()
+
+</script>
+
+
+</body>
+
+</html> 
+
+
